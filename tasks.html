@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Задачи</title>
+</head>
+<body>
+  <h2 class="task-section-title">Управление задачами</h2>
+
+  <div class="card task-input-section">
+    <h3>Создать новую задачу</h3>
+    <input type="text" id="newTaskText" class="task-input" placeholder="Название задачи (напр. Полная проверка диска C)">
+    <button class="card task-button" onclick="addNewTask()">Добавить задачу</button>
+  </div>
+
+  <div class="card active-tasks-card">
+    <h3>Активные задачи</h3>
+    <ul class="active-task-list" id="activeTasks">
+      <li id="noActiveTasksMessage" style="color: #ddd; font-size: 0.9em; text-align: center;">Нет активных задач</li>
+    </ul>
+  </div>
+
+  <div class="card task-history-card">
+    <h3>История задач</h3>
+    <ul class="task-history-list" id="taskHistory">
+      <li><strong>19.05.2025 12:05</strong> - Быстрая проверка: Завершена</li>
+      <li><strong>18.05.2025 22:00</strong> - Обновление баз: Успешно</li>
+    </ul>
+  </div>
+</body>
+</html>

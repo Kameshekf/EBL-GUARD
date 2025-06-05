@@ -1,0 +1,34 @@
+{
+  "name": "eblan-guard-desktop",
+  "version": "1.0.0",
+  "description": "EBL-GUARD CLOUD Desktop App",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^29.1.4",
+    "electron-builder": "^26.0.12"
+  },
+  "build": {
+    "appId": "com.eblguard.desktop",
+    "productName": "EBL-GUARD Desktop",
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "icon": "build/icon.ico"
+    },
+    "files": [
+      "**/*",
+      "!node_modules/${arch}/**/*"
+    ]
+  }
+}

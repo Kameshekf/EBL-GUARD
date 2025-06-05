@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Безопасность</title>
+</head>
+<body>
+  <div class="scan-section">
+    <h2 class="scan-title">Проверка безопасности</h2>
+    <div class="scan-progress-bar">
+      <div class="progress" id="scanProgress">
+        <span class="progress-text" id="scanProgressText">0%</span>
+      </div>
+    </div>
+    <p class="scan-status" id="scanStatus">Нажмите "Запустить быструю проверку" для сканирования.</p>
+    <p class="scan-current-item" id="scanCurrentItem" style="font-size: 0.9em; color: #aaa; text-align: center; margin-top: -10px; margin-bottom: 15px;">Ожидание...</p>
+    
+    <div class="scan-buttons">
+      <button class="card" onclick="startScan('quick')">Запустить быструю проверку</button>
+      <button class="card" onclick="startScan('full')">Запустить полную проверку</button>
+      <button class="card" onclick="stopScan()">Остановить проверку</button>
+    </div>
+  </div>
+
+  <div class="card threat-list-card">
+    <h3>Обнаруженные угрозы</h3>
+    <ul class="threat-list" id="detectedThreats">
+      <li style="color: #ddd; font-size: 0.9em; text-align: center;">Угроз не обнаружено</li>
+    </ul>
+  </div>
+
+  <div class="card security-events-card">
+    <h3>Последние события безопасности</h3>
+    <ul class="security-events-list" id="securityEvents">
+      <li><strong>19.05.2025 12:05</strong> - Угроз не обнаружено</li>
+      <li><strong>19.05.2025 11:58</strong> - Обновлены антивирусные базы</li>
+    </ul>
+  </div>
+</body>
+</html>

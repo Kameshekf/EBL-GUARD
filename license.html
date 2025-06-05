@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Лицензия</title>
+</head>
+<body>
+  <div class="license-info">
+    <h2 class="license-title">Информация о лицензии</h2>
+    <div class="license-details">
+      <p><strong>Статус:</strong> <span id="licenseStatus" class="license-status">Активна</span></p>
+      <p><strong>Тип лицензии:</strong> <span id="licenseType">EBLAN CLOUD Premium</span></p>
+      <p><strong>Ключ активации:</strong> <span id="licenseKey">XXXXX-XXXXX-XXXXX-XXXXX-XXXXX</span></p>
+      <p><strong>Дата активации:</strong> <span id="activationDate">15.05.2024</span></p>
+      <p><strong>Срок действия до:</strong> <span id="expirationDate">15.05.2025</span></p>
+      <p><strong>Оставшиеся дни:</strong> <span id="daysRemaining">30</span></p>
+    </div>
+  </div>
+
+  <div class="activation-section">
+    <h3>Активация лицензии</h3>
+    <input type="text" id="licenseKeyInput" class="license-key-input" placeholder="Введите ключ активации">
+    <div class="activation-buttons">
+        <button class="card" onclick="activateLicense()">Активировать</button>
+        <button class="card" onclick="extendLicense()">Продлить</button>
+        <button class="card" onclick="startTrial()">Начать пробный период</button>
+    </div>
+    <p class="activation-message" id="activationMessage"></p>
+  </div>
+</body>
+</html>

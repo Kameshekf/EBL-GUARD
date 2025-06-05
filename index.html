@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EBL-GUARD CLOUD UI</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="sidebar">
+    <h2>EBL-GUARD<br>CLOUD</h2>
+    <a href="monitoring.html" class="active" data-tab="monitoring">Мониторинг</a>
+    <a href="security.html" data-tab="security">Безопасность</a>
+    <a href="update.html" data-tab="update">Обновление</a>
+    <a href="tasks.html" data-tab="tasks">Задачи</a>
+    <a href="license.html" data-tab="license">Лицензия</a>
+    <div class="sidebar-info">
+      <p>Под управлением:<br>EBLAN CLOUD Server</p>
+      <p>Сервер подключения:<br>19.05.2025 12:15</p>
+      <p>Версия:<br>CLOUD 1.0</p>
+    </div>
+  </div>
+  <div class="main-content">
+    </div>
+
+  <script>
+    let currentTabScript = null; // Для отслеживания текущего загруженного скрипта вкладки
+
+    async function loadTab(url, tabId) {
+      try {
+        const response = await fetch(url);
+        const content = await response.text();
+        document.querySelector('.main-content').innerHTML = content;
+
+        // Удаляем предыдущий скрипт вкладки, если он был
+        if (currentTabScript && currentTabScript.parentNode) {
+          currentTabScript.parentNode.removeChild(currentTabScript);
+          currentTabScript = null;
+        }
+
+        // Обновление активной ссылки
+        const sidebarLinks = document.querySelectorAll('.sidebar a');
+        sidebarLinks.forEach(link => link.classList.remove('active'));
+        const activeLink = document.querySelector(`.sidebar a[data-tab="${tabId}"]`);
+        if (activeLink) {
+          activeLink.classList.add('active');
+        }
+
+        // Динамическая загрузка скрипта для новой вкладки
+        const scriptPath = `${tabId}.js`;
+        const script = document.createElement('script');
+        script.src = scriptPath;
+        script.onload = () => {
+          // Если скрипт загружен, и у него есть функция initializeTab, вызываем её
+          if (window.initializeTab && typeof window.initializeTab === 'function') {
+            window.initializeTab();
+            window.initializeTab = null; // Очищаем ссылку, чтобы не вызывать повторно
+          }
+        };
+        script.onerror = () => {
+          console.warn(`Скрипт ${scriptPath} не найден или не загружен.`);
+        };
+        document.body.appendChild(script);
+        currentTabScript = script; // Сохраняем ссылку на текущий скрипт
+        
+      } catch (error) {
+        console.error('Ошибка загрузки вкладки:', error);
+        document.querySelector('.main-content').innerHTML = '<p>Ошибка загрузки контента.</p>';
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // Загрузка вкладки "Мониторинг" по умолчанию
+      loadTab('monitoring.html', 'monitoring');
+
+      const sidebarLinks = document.querySelectorAll('.sidebar a');
+      sidebarLinks.forEach(link => {
+        link.addEventListener('click', function(event) {
+          event.preventDefault();
+          const url = this.getAttribute('href');
+          const tabId = this.getAttribute('data-tab');
+          loadTab(url, tabId);
+        });
+      });
+    });
+  </script>
+</body>
+</html>
